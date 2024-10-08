@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMR Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BMR Calculator</h1>
+        <form id="bmrForm">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" placeholder="Enter your age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" placeholder="Enter your weight in kg" required>
+            </div>
+
+            <div class="form-group">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" placeholder="Enter your height in cm" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <button type="button" onclick="calculateBMR()">Calculate BMR</button>
+        </form>
+
+        <div class="gauge-container">
+            <div class="gauge">
+                <div class="gauge-body"></div>
+                <div class="needle" id="needle"></div>
+                <div class="center-point"></div>
+                <div class="gauge-markings">
+                    <span>1000</span>
+                    <span>1500</span>
+                    <span>2000</span>
+                    <span>2500</span>
+                    <span>3000</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="result">
+            <h2>Your BMR: <span id="bmrResult">--</span> kcal/day</h2>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
