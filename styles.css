@@ -6,137 +6,95 @@
 }
 
 body {
-    background-color: #f0f4f8;
+    background-color: #f4f4f4;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
 }
 
-.container {
-    background: #fff;
-    padding: 30px 40px;
+.calculator {
+    background-color: #222;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    width: 320px;
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #333;
+.display {
+    background-color: #444;
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: right;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow-x: auto;
 }
 
-form {
-    margin-bottom: 30px;
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-}
-
-input[type="number"],
-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    padding: 12px 20px;
+.btn {
+    padding: 20px;
+    font-size: 1.5rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.2s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+.btn:hover {
+    opacity: 0.9;
 }
 
-.gauge-container {
-    margin: 0 auto 20px;
-    width: 200px;
-    height: 100px;
-    position: relative;
+.number {
+    background-color: #333;
+    color: #fff;
 }
 
-.gauge {
-    width: 100%;
-    height: 100%;
-    background: #e0e0e0; /* Solid grey background */
-    border-top-left-radius: 100px;
-    border-top-right-radius: 100px;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #ccc; /* Optional: Add a border for better visibility */
+.operator {
+    background-color: #ff9500;
+    color: #fff;
 }
 
-.gauge-body {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+.function {
+    background-color: #a6a6a6;
+    color: #fff;
 }
 
-.needle {
-    width: 2px;
-    height: 50%;
-    background: red;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform-origin: bottom;
-    transform: rotate(-90deg); /* Start at 0 */
-    transition: transform 1s ease-out;
+.equals {
+    background-color: #34c759;
+    color: #fff;
+    grid-column: span 1;
 }
 
-.center-point {
-    width: 12px;
-    height: 12px;
-    background: #333;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+.zero {
+    grid-column: span 2;
 }
 
-.gauge-markings {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    pointer-events: none;
+.decimal {
+    background-color: #333;
+    color: #fff;
 }
 
-.gauge-markings span {
-    font-size: 10px;
-    color: #555;
-}
+/* Responsive Design */
+@media (max-width: 400px) {
+    .calculator {
+        width: 90%;
+    }
 
-#result {
-    margin-top: 20px;
-}
+    .display {
+        font-size: 2rem;
+        padding: 15px;
+    }
 
-#result h2 {
-    color: #333;
+    .btn {
+        padding: 15px;
+        font-size: 1.2rem;
+    }
 }

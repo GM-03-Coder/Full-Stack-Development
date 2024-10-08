@@ -1,48 +1,138 @@
-// Function to calculate BMR and update the gauge
-function calculateBMR() {
-    // Get input values
-    const age = parseInt(document.getElementById("age").value);
-    const weight = parseFloat(document.getElementById("weight").value);
-    const height = parseFloat(document.getElementById("height").value);
-    const gender = document.getElementById("gender").value;
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('.btn');
+const equals = document.getElementById('equals');
+const clear = document.getElementById('clear');
+const del = document.getElementById('delete');
 
-    // Validate inputs
-    if (isNaN(age) || isNaN(weight) || isNaN(height) || !gender) {
-        alert("Please fill in all fields correctly.");
+let currentInput = '';
+let previousInput = '';
+let operator = null;
+
+function updateDisplay() {
+    display.textContent = currentInput || '0';
+}
+
+function handleNumber(number) {
+    if (number === '.' && currentInput.includes('.')) return; 
+    currentInput += number;
+}
+
+function handleOperator(op) {
+    if (currentInput === '' && previousInput === '') return; 
+    if (currentInput === '' && previousInput !== '') {
+        operator = op;
         return;
     }
+    if (previousInput !== '') {
+        compute();
+    }
+    operator = op;
+    previousInput = currentInput;
+    currentInput = '';
+}
 
-    let bmr;
+function compute() {
+    let result;
+    const prev = parseFloat(previousInput);
+    const current = parseFloat(currentInput);
+    if (isNaN(prev) || isNaN(current)) return;
 
-    // BMR calculation using the Mifflin-St Jeor Equation
-    if (gender === "male") {
-        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
-    } else if (gender === "female") {
-        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    switch(operator) {
+        case '+':
+            result = prev + current;
+            break;
+        case '-':
+            result = prev - current;
+            break;
+        case '*':
+            result = prev * current;
+            break;
+        case '/':
+            result = current === 0 ? 'Error' : prev / current;
+            break;
+        default:
+            return;
     }
 
-    // Update the result display
-    document.getElementById("bmrResult").textContent = bmr.toFixed(2);
-
-    // Animate the gauge needle
-    animateGauge(bmr);
+    currentInput = result.toString();
+    operator = null;
+    previousInput = '';
 }
 
-// Function to animate the gauge needle based on BMR
-function animateGauge(bmr) {
-    const needle = document.getElementById("needle");
-    
-    // Define the BMR range for the gauge
-    const minBMR = 1000;
-    const maxBMR = 3000;
-
-    // Clamp the BMR within the defined range
-    const clampedBMR = Math.max(minBMR, Math.min(bmr, maxBMR));
-
-    // Calculate the rotation angle for the needle
-    // 0° corresponds to minBMR, 180° corresponds to maxBMR
-    const rotation = ((clampedBMR - minBMR) / (maxBMR - minBMR)) * 180 - 90; // Offset by -90° to start at the left
-
-    // Apply the rotation
-    needle.style.transform = `rotate(${rotation}deg)`;
+function clearAll() {
+    currentInput = '';
+    previousInput = '';
+    operator = null;
+    updateDisplay();
 }
+
+function deleteLast() {
+    currentInput = currentInput.slice(0, -1);
+    updateDisplay();
+}
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.getAttribute('data-value');
+
+        if(button.classList.contains('number')) {
+            handleNumber(value);
+            updateDisplay();
+        }
+
+        if(button.classList.contains('operator')) {
+            handleOperator(value);
+            updateDisplay();
+        }
+
+        if(button.classList.contains('function')) {
+            if(button.id === 'clear') {
+                clearAll();
+            }
+            if(button.id === 'delete') {
+                deleteLast();
+            }
+        }
+
+        if(button.classList.contains('decimal')) {
+            handleNumber(value);
+            updateDisplay();
+        }
+    });
+});
+
+equals.addEventListener('click', () => {
+    compute();
+    updateDisplay();
+});
+
+updateDisplay();
+
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    if ((key >= '0' && key <= '9') || key === '.') {
+        handleNumber(key);
+        updateDisplay();
+    }
+
+    if (['+', '-', '*', '/'].includes(key)) {
+        handleOperator(key);
+        updateDisplay();
+    }
+
+    if (key === 'Enter' || key === '=') {
+        compute();
+        updateDisplay();
+    }
+
+    if (key === 'Backspace') {
+        deleteLast();
+        updateDisplay();
+    }
+
+    if (key === 'Escape') {
+        clearAll();
+        updateDisplay();
+    }
+});

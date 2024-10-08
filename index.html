@@ -1,85 +1,40 @@
-<html>
-<title>Facebook old login page</title>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link type="text/css" rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="btn function" id="clear">C</button>
+            <button class="btn function" id="delete">DEL</button>
+            <button class="btn operator" data-value="/">÷</button>
+            <button class="btn operator" data-value="*">×</button>
 
-<div class="fb-header">
+            <button class="btn number" data-value="7">7</button>
+            <button class="btn number" data-value="8">8</button>
+            <button class="btn number" data-value="9">9</button>
+            <button class="btn operator" data-value="-">−</button>
 
-	<div id="heading" class="fb-header">
-		<h1>facebook</h1>
-	</div>
+            <button class="btn number" data-value="4">4</button>
+            <button class="btn number" data-value="5">5</button>
+            <button class="btn number" data-value="6">6</button>
+            <button class="btn operator" data-value="+">+</button>
 
-	<div id="form1" class="fb-header">
-		Email or Phone
-		<br>
-		<input placeholder="Email" type="mail" name="name" />
-		<br>
-		<input type="checkbox" />
-		keep me logged in
-	</div>
+            <button class="btn number" data-value="1">1</button>
+            <button class="btn number" data-value="2">2</button>
+            <button class="btn number" data-value="3">3</button>
+            <button class="btn equals" id="equals">=</button>
 
-	<div id="form2" class="fb-header">
-		Password
-		<br>
-		<input placeholder="Password" type="password" name="password" />
-		<br>
-		Forgotten your password?
-	</div>
+            <button class="btn zero number" data-value="0">0</button>
+            <button class="btn decimal" data-value=".">.</button>
+        </div>
+    </div>
 
-</div>
-
-	 <input type="submit" class="submit1" value="login" />
-<div class="fb-body">
-
-	<div id="intro1" class="fb-body">Facebook helps you 
-	 	connect and share with the 
-	 	<br>
-	 	people in your life.
-	</div>
-
-	<div id="intro2" class="fb-body">
-		Create an account
-	</div>
-
-	<div id="img" class="fb-body">
-		<img src="https://digitizor.com/wp-content/uploads/2009/09/facebook-what-is.png" />
-	</div>
-
-	<div id="intro3" class="fb-body">
-		It's free and always will be.
-	</div>
-
-	<div id="form3" class="fb-body">
-		
-	 	<input placeholder="First Name" type="text" id="namebox" name="name1" />
-	 	<input placeholder="Last Name" type="text" id="namebox"  /> 
-		<br>
-	 	<input placeholder="Emai" type="text" id="mailbox" />
-		<br>
-	 	<input placeholder="Re-enter email" type="text" id="mailbox"  />
-		<br>
-	 	<input placeholder="Password" type="password" id="mailbox"  />
-		<br>
-	 	<input type="date" id="namebox"  />
-		<br><br>
-	 	<input type="radio" id="r-b" name="sex" value="male" />Male
-	 	<input type="radio" id="r-b" name="sex" value="female" />Female
-		<br><br>
-	 	<p id="intro4">
-			By clicking Create an account, you agree to
-	 		our Terms and that you have read our Data Policy, 
-	 		including our Cookie Use.
-		</p>
-	 	<input type="submit" class="button2" value="Create an account" />
-	 	<br><hr>
-	 	<p id="intro5">
-			Create a Page for a celebrity, band or business.
-
-		</p>
-	</div>
-	
-</div>
+    <script src="script.js"></script>
 </body>
 </html>
